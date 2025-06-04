@@ -153,6 +153,7 @@
 
     document.getElementById('error-btn').addEventListener('click', () => {
       console.error("this is an error message");
+      TrackJS.track('Testing TrackJS!');
     });
 
     document.getElementById('count-btn').addEventListener('click', () => {
