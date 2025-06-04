@@ -47,6 +47,13 @@
       width: 122px;
     }
   </style>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "6a9171edda334f45b77d04add88e6b60"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
 </head>
 
 <body>
@@ -87,14 +94,14 @@
     </section>
   </main>
 
-  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <!-- <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
     window.TrackJS && TrackJS.install({ 
       token: "6a9171edda334f45b77d04add88e6b60",
       application: "lab9"
       // for more configuration options, see https://docs.trackjs.com
     });
-  </script>
+  </script> -->
   <script>
 
     class CalculatorError extends Error {
