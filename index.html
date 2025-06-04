@@ -69,21 +69,21 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button id="log-btn">Console Log</button>
+      <button id="error-btn">Console Error</button>
+      <button id="count-btn">Console Count</button>
+      <button id="warn-btn">Console Warn</button>
+      <button id="assert-btn">Console Assert</button>
+      <button id="clear-btn">Console Clear</button>
+      <button id="dir-btn">Console Dir</button>
+      <button id="dirxml-btn">Console dirxml</button>
+      <button id="group-start-btn">Console Group Start</button>
+      <button id="group-end-btn">Console Group End</button>
+      <button id="table-btn">Console Table</button>
+      <button id="start-timer-btn">Start Timer</button>
+      <button id="end-timer-btn">End Timer</button>
+      <button id="trace-btn">Console Trace</button>
+      <button id="global-error-btn">Trigger a Global Error</button>
     </section>
   </main>
 
@@ -102,6 +102,82 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    document.getElementById('log-btn').addEventListener('click', () => {
+      console.log("hello there lab 9 graders");
+    });
+
+    document.getElementById('error-btn').addEventListener('click', () => {
+      console.error("this is an error message");
+    });
+
+    document.getElementById('count-btn').addEventListener('click', () => {
+      console.count("Button Clicked");
+    });
+
+    document.getElementById('warn-btn').addEventListener('click', () => {
+      console.warn("warning message");
+    });
+
+    document.getElementById('assert-btn').addEventListener('click', () => {
+      const x = 5;
+      const y = 10;
+      console.assert(x > y, { x, y, message: "Assertion failed: x is not greater than y" });
+      console.assert(y > x, { x, y, message: "Assertion passed: y is greater than x (this won't show)" });
+    });
+
+    document.getElementById('clear-btn').addEventListener('click', () => {
+      console.clear();
+    });
+
+    document.getElementById('dir-btn').addEventListener('click', () => {
+      const myObject = { name: "justin", age: 21, city: "san diego"};
+      console.dir(myObject);
+    });
+
+    document.getElementById('dirxml-btn').addEventListener('click', () => {
+      console.dirxml(document.body);
+    });
+
+    document.getElementById('group-start-btn').addEventListener('click', () => {
+      console.log("This is the outer level");
+      console.group();
+      console.log("Level 2");
+      console.group();
+      console.log("Level 3");
+    });
+
+    document.getElementById('group-end-btn').addEventListener('click', () => {
+      console.groupEnd(); 
+      console.log("Group ended.");
+    });
+
+    document.getElementById('table-btn').addEventListener('click', () => {
+      const users = [
+        { id: 1, name: "justin", role: "student" },
+        { id: 2, name: "powell", role: "professor" },
+        { id: 3, name: "muscle-man", role: "Viewer" }
+      ];
+      console.table(users);
+    });
+
+    document.getElementById('start-timer-btn').addEventListener('click', () => {
+      console.time("myTimer");
+    });
+
+    document.getElementById('end-timer-btn').addEventListener('click', () => {
+      console.timeEnd("myTimer");
+    });
+
+    document.getElementById('trace-btn').addEventListener('click', () => {
+      function foo() {
+        function bar() {
+          console.trace("Trace from bar()");
+        }
+        bar();
+      }
+      foo();
+    });
   </script>
 </body>
 
