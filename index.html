@@ -87,7 +87,23 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "6a9171edda334f45b77d04add88e6b60",
+      application: "lab9"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+  <script>
+
+    class CalculatorError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "CalculatorError";
+      }
+    }
+
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -95,13 +111,33 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
+      
+
+      try {
+      let numOne = parseFloat(firstNum);
+      let numTwo = parseFloat(secondNum);
+
+      if( isNaN(numOne) || isNaN(numTwo)) {
+        throw new CalculatorError("invalid input");
+      }
+
+      if( operator === '/' && numTwo === 0) {
+        throw new CalculatorError("cannot divide by zero");
+      }
+
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      } catch (error) {
+        console.error("calculate error:", error.message);
+        output.innerHTML = `Error: ${error.message}`;
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+  
 
     document.getElementById('log-btn').addEventListener('click', () => {
       console.log("hello there lab 9 graders");
@@ -178,6 +214,23 @@
       }
       foo();
     });
+
+    window.onerror = function (message, source, lineno, colno, error) {
+      console.log("A global error was caught!");
+      console.log("Message: ", message);
+      console.log("Source: ", source);
+      console.log("Line: ", lineno);
+      console.log("Column: ", colno);
+      console.log("Error object: ", error);
+      return true; // Prevents the browser's default error handling (e.g., console message)
+    };
+
+    document.getElementById('global-error-btn').addEventListener('click', () => {
+      console.log("Attempting to trigger a global error...");
+      callUndefinedFunction(); // This will cause a ReferenceError
+    });
+
+    TrackJS.track('Testing TrackJS!');
   </script>
 </body>
 
